@@ -7,3 +7,4 @@ Handle backend API calls from HomeChef mobile app: https://github.com/vladalexey
 - Knex
 - Postgresql
 - Sqlite3
+- Heroku CLI
