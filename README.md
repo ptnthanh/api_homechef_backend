@@ -2,7 +2,7 @@
 
 Handle backend API calls from HomeChef mobile app: https://github.com/vladalexey/Home-Chef
 
-**Tech stacks:**
+# **Tech stacks:**
 - Nodejs
 - Knex
 - Postgresql
