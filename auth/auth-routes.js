@@ -17,7 +17,7 @@ router.post("/register", (req, res) => {
   const hash = bcrypt.hashSync(credentials.password, 12);
   credentials.password = hash;
 
-  Lessons.addUser(credentials)
+  Category.addUser(credentials)
     .then((user) => {
       res.status(200).json(user, {message: "Registered successfully"});
     })
