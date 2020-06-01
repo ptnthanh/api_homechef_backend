@@ -7,7 +7,7 @@ module.exports = {
   remove,
   update,
   addRecipe,
-  findCategoryRecipe,
+  findCategoryRecipes,
   findRecipeById,
   removeRecipe,
   addUser,
