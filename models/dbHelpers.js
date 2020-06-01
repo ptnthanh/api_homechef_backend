@@ -62,7 +62,7 @@ async function addRecipe(recipe, category_id) {
   // return findMessageById(id);
 }
 
-function findCategoryRecipe(lesson_id) {
+function findCategoryRecipes(lesson_id) {
   return db("categories as c")
     .join("recipes as r", "c.id", "r.category")
     .select(
