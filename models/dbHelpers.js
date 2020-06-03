@@ -7,7 +7,7 @@ module.exports = {
   remove,
   update,
   addRecipe,
-  findCategoryRecipe,
+  findCategoryRecipes,
   findRecipeById,
   removeRecipe,
   addUser,
@@ -67,7 +67,7 @@ async function addRecipe(recipe, category_id) {
   // return findMessageById(id);
 }
 
-function findCategoryRecipe(lesson_id) {
+function findCategoryRecipes(category) {
   return db("categories as c")
     .join("recipes as r", "c.id", "r.category")
     .select(
@@ -77,7 +77,7 @@ function findCategoryRecipe(lesson_id) {
       "r.recipe_id as RecipeID",
       "r.recipe_name as RecipeName"
     )
-    .where({ lesson_id });
+    .where({ category });
 }
 
 function removeRecipe(id) {

@@ -32,7 +32,7 @@ router.post("/register", (req, res) => {
 
   Category.addUser(credentials)
     .then((user) => {
-      res.status(200).json(user, {message: "Registered successfully"});
+      res.status(200).json(user);
     })
     .catch((error) => {
       if (error.errno == 19) {
