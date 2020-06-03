@@ -2,8 +2,8 @@
 exports.up = function(knex) {
     return knex.schema.table("users", (tbl) => {
         tbl.string('email', 128).notNullable().defaultTo("test@test.com");
-        tbl.dateTime('created_at').defaultTo(0);
-        tbl.dateTime('updated_at').defaultTo(0);
+        tbl.dateTime('created_at').defaultTo(knex.fn.now());
+        tbl.dateTime('updated_at').defaultTo(knex.fn.now());
       });
 };
 
