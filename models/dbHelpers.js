@@ -13,10 +13,11 @@ module.exports = {
   addUser,
   findAllUsers,
   findUserByUsername,
+  findUserByEmail
 };
 
 async function addUser(user) {
-  return await db("users").insert(user, ["id", "username"]);
+  return await db("users").insert(user, ["id", "username", "email", "created_at", "updated_at"]);
 }
 
 function findAllUsers() {
@@ -25,6 +26,10 @@ function findAllUsers() {
 
 function findUserByUsername(username) {
   return db("users").where({ username }).first();
+}
+
+function findUserByEmail(email) {
+  return db("users").where({ email }).first();
 }
 
 async function add(category) {
