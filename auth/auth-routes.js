@@ -2,22 +2,35 @@ const express = require("express");
 const Category = require("../models/dbHelpers");
 const bcrypt = require("bcryptjs");
 const generateToken = require("./generateToken");
+const moment = require("moment");
 
 const router = express.Router();
 
 // for all endpoints beginning with /api/users
 router.post("/register", (req, res) => {
   const credentials = req.body;
-  const { username, password } = credentials;
+  const { username, password, email } = credentials;
 
-  if (!(username && password)) {
-    return res.status(400).json({ message: "Username and password required" });
+  if (!(username && password && email)) {
+
+    if (!username) {
+      return res.status(400).json({ message: "Username required" });
+    }
+    else if (!password) {
+      return res.status(400).json({ message: "Password required" });
+    }
+    else if (!email) {
+      return res.status(400).json({ message: "Email required" });
+    }
   }
 
   const hash = bcrypt.hashSync(credentials.password, 12);
   credentials.password = hash;
+  
+  credentials["created_at"] = moment(new Date());
+  credentials["updated_at"] = moment(new Date());
 
-  Lessons.addUser(credentials)
+  Category.addUser(credentials)
     .then((user) => {
       res.status(200).json(user, {message: "Registered successfully"});
     })
@@ -34,7 +47,13 @@ router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
   if (!(username && password)) {
-    return res.status(400).json({ message: "Username and password required" });
+
+    if (!username) {
+      return res.status(400).json({ message: "Username required" });
+    }
+    else if (!password) {
+      return res.status(400).json({ message: "Password required" });
+    }
   }
 
   Category.findUserByUsername(username)
